@@ -10,3 +10,5 @@ POSTGRES_PASSWORD=pass
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 ```
+
+Run `pip install -r requirements.txt`.
