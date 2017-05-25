@@ -1,3 +1,6 @@
+{% extends 'dsn/base.html' %}
+
+{% block body %}
 <h1>行方不明者： {{ person.first_name }} {{ person.last_name }}</h1>
 
 <h2>目撃情報</h2>
@@ -12,3 +15,4 @@
   <li>{{ witness.comment }}</li>
   {% endfor %}
 </ul>
+{% endblock %}

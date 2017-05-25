@@ -1,3 +1,6 @@
+{% extends 'dsn/base.html' %}
+
+{% block body %}
 <h1>行方不明者</h1>
 <ul>
   {% for person in persons %}
@@ -6,3 +9,4 @@
   </li>
   {% endfor %}
 </ul>
+{% endblock %}
