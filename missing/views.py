@@ -20,7 +20,7 @@ def add(request):
             person = form.save(commit=False)
             person.family = request.user
             person.save()
-            return redirect(reverse('index'))
+            return redirect(reverse('missing:detail', kwargs={'id':person.id}))
     else:
         form = AddForm()
 
@@ -40,7 +40,7 @@ def detail(request, id):
             witness.target = person
             witness.user = request.user
             witness.save()
-            return redirect(reverse('detail', kwargs={'id':id}))
+            return redirect(reverse('missing:detail', kwargs={'id':id}))
     else:
         form = WitnessForm()
 

@@ -1,5 +1,9 @@
 {{ user.username }}
 
+<p>
+  <a href="{% url 'missing:add' %}">患者を追加する</a>
+</p>
+
 <ul>
 {% for person in request.user.person_set.all %}
 <li>
