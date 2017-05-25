@@ -1,0 +1,12 @@
+{% extends 'dsn/base.html' %}
+
+{% block body %}
+<h1>行方不明者</h1>
+<ul>
+  {% for person in persons %}
+  <li>
+      <a href="{% url 'missing:detail' person.id %}">{{ person.first_name }} {{ person.last_name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

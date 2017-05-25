@@ -1,0 +1,9 @@
+{% extends 'dsn/base.html' %}
+
+{% block body %}
+<form action="{% url 'accounts:login' %}?{{ request.META.QUERY_STRING }}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="ログイン">
+</form>
+{% endblock %}

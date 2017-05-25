@@ -1,0 +1,10 @@
+{% extends 'dsn/base.html' %}
+
+{% block body %}
+<h1>患者を追加</h1>
+<form action="{% url 'missing:add' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+</form>
+{% endblock %}
