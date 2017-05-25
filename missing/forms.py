@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Aged
+from .models import Person
 
 class AddForm(ModelForm):
     class Meta:
-        model = Aged
+        model = Person
         exclude = ['family']

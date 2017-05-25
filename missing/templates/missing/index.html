@@ -1,6 +1,8 @@
 <h1>行方不明者</h1>
 <ul>
-  {% for person in aged %}
-  <li>{{ person.first_name }} {{ person.last_name }}</li>
+  {% for person in persons %}
+  <li>
+      <a href="{% url 'detail' person.id %}">{{ person.first_name }} {{ person.last_name }}</a>
+  </li>
   {% endfor %}
 </ul>

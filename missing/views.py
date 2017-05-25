@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from .models import Aged
+from .models import Person
 from .forms import AddForm
 
 def index(request):
-    aged = Aged.objects.filter(is_missing=True)
+    persons = Person.objects.filter(is_missing=True)
     context = {
-        'aged': aged,
+        'persons': persons,
     }
     return render(request, 'missing/index.html', context)
 
@@ -18,9 +18,9 @@ def add(request):
     if request.method == 'POST':
         form = AddForm(request.POST)
         if form.is_valid():
-            missing = form.save(commit=False)
-            missing.family = request.user
-            missing.save()
+            person = form.save(commit=False)
+            person.family = request.user
+            person.save()
             return redirect(reverse('index'))
     else:
         form = AddForm()
@@ -29,3 +29,12 @@ def add(request):
         'form': form,
     }
     return render(request, 'missing/add.html', context)
+
+
+@login_required
+def detail(request, id):
+    person = get_object_or_404(Person, id=id)
+    context = {
+        'person': person,
+    }
+    return render(request, 'missing/detail.html', context)
