@@ -8,8 +8,8 @@ class AddForm(ModelForm):
         model = Person
         exclude = ['family']
         labels = {
-            'first_name': _('姓'),
-            'last_name': _('名'),
+            'first_name': _('名'),
+            'last_name': _('姓'),
             'is_missing': _('今現在、行方不明か'),
         }
 
