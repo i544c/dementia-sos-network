@@ -1,0 +1,9 @@
+{{ user.username }}
+
+<ul>
+{% for person in request.user.person_set.all %}
+<li>
+  <a href="{% url 'missing:detail' person.id %}">{{ person.first_name }} {{ person.last_name }}</a>
+</li>
+{% endfor %}
+</ul>

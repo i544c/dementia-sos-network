@@ -1,7 +1,7 @@
 <h1>行方不明者： {{ person.first_name }} {{ person.last_name }}</h1>
 
 <h2>目撃情報</h2>
-<form action="{% url 'detail' person.id %}" method="post">
+<form action="{% url 'missing:detail' person.id %}" method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit">
