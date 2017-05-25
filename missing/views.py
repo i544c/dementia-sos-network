@@ -3,12 +3,11 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Person
-from .forms import AddForm
+from .forms import AddForm, WitnessForm
 
 def index(request):
-    persons = Person.objects.filter(is_missing=True)
     context = {
-        'persons': persons,
+        'persons': Person.objects.filter(is_missing=True),
     }
     return render(request, 'missing/index.html', context)
 
@@ -34,7 +33,19 @@ def add(request):
 @login_required
 def detail(request, id):
     person = get_object_or_404(Person, id=id)
+    if request.method == 'POST':
+        form = WitnessForm(request.POST)
+        if form.is_valid():
+            witness = form.save(commit=False)
+            witness.target = person
+            witness.user = request.user
+            witness.save()
+            return redirect(reverse('detail', kwargs={'id':id}))
+    else:
+        form = WitnessForm()
+
     context = {
         'person': person,
+        'form': form,
     }
     return render(request, 'missing/detail.html', context)

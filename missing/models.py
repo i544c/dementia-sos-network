@@ -9,3 +9,9 @@ class Person(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+
+class Witness(models.Model):
+    target = models.ForeignKey(Person, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=10000)
